@@ -6,7 +6,7 @@ const HTML_HEADERS = {
 };
 
 const ASSET_HEADERS = {
-  "Cache-Control": "public, max-age=31536000, immutable",
+  "Cache-Control": "public, max-age=3600, must-revalidate",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "X-Content-Type-Options": "nosniff"
 };
