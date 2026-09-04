@@ -213,8 +213,8 @@ sup {
 
 .profile {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 290px;
-  gap: clamp(44px, 8vw, 92px);
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: clamp(44px, 7vw, 78px);
   align-items: center;
   min-height: 430px;
   margin: 0;
@@ -223,25 +223,19 @@ sup {
 
 .profile-photo-wrap {
   position: relative;
-}
-
-.profile-photo-wrap::before {
-  position: absolute;
-  z-index: 0;
-  inset: 20px -18px -18px 22px;
-  border: 1px solid var(--terracotta);
-  content: "";
+  padding: 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: #f2f4f6;
+  box-shadow: 0 18px 48px rgba(23, 35, 52, 0.14);
 }
 
 .profile-photo {
-  position: relative;
-  z-index: 1;
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 2.55;
-  border: 1px solid var(--line-strong);
-  object-fit: cover;
-  object-position: 50% 22%;
+  height: auto;
+  border: 0;
+  border-radius: 10px;
   filter: saturate(0.9) contrast(1.02);
 }
 
@@ -677,12 +671,8 @@ sup {
   }
 
   .profile-photo-wrap {
-    width: min(280px, 83vw);
+    width: min(250px, 75vw);
     margin: 10px auto 8px;
-  }
-
-  .profile-photo {
-    aspect-ratio: 4 / 4.7;
   }
 
   .quick-links a {
