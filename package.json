@@ -1,0 +1,9 @@
+{
+  "name": "fengzhuo-zhang-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "sh scripts/build.sh"
+  }
+}
