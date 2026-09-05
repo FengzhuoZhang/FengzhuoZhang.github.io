@@ -199,20 +199,6 @@
   cursor: help;
 }
 
-.map-tooltip {
-  position: absolute;
-  z-index: 5;
-  max-width: 240px;
-  padding: 9px 11px;
-  border: 1px solid var(--line-strong);
-  border-radius: 6px;
-  color: #fff;
-  background: var(--navy);
-  box-shadow: 0 8px 24px rgba(23, 35, 52, 0.18);
-  font-size: 0.76rem;
-  pointer-events: none;
-}
-
 .chart-empty {
   position: absolute;
   inset: 50% auto auto 50%;

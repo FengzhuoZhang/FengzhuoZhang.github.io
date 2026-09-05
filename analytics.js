@@ -1,5 +1,7 @@
 import world from "./assets/vendor/world-110m.mjs";
 
+const d3 = globalThis.d3;
+const topojson = globalThis.topojson;
 const formatter = new Intl.NumberFormat("en-US");
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 const state = { data: null };
@@ -9,7 +11,6 @@ const periodSelect = document.getElementById("period-select");
 const mapWrap = document.getElementById("map-wrap");
 const mapSvg = d3.select("#visit-map");
 const trendSvg = d3.select("#visit-trend");
-const tooltip = document.getElementById("map-tooltip");
 
 function countryName(code) {
   if (!code || code === "XX") return "Unknown country";
@@ -75,19 +76,14 @@ function drawMap() {
     .attr("cx", (d) => d.point[0]).attr("cy", (d) => d.point[1])
     .attr("r", (d) => radius(Number(d.views)));
 
-  mapSvg.append("g").selectAll("circle.visit-hit").data(points).join("circle")
+  const hitTargets = mapSvg.append("g").selectAll("circle.visit-hit").data(points).join("circle")
     .attr("class", "visit-hit")
     .attr("cx", (d) => d.point[0]).attr("cy", (d) => d.point[1])
     .attr("r", (d) => Math.max(16, radius(Number(d.views)) + 5))
-    .attr("aria-label", (d) => `${countryName(d.countryCode)}, ${d.regionCode}: ${d.views} views`)
-    .on("pointerenter pointermove", (event, d) => {
-      tooltip.hidden = false;
-      tooltip.textContent = `${countryName(d.countryCode)} · ${d.regionCode || "Unknown region"} — ${formatter.format(d.views)} views`;
-      const bounds = mapWrap.getBoundingClientRect();
-      tooltip.style.left = `${Math.min(event.clientX - bounds.left + 12, bounds.width - 245)}px`;
-      tooltip.style.top = `${Math.max(8, event.clientY - bounds.top - 42)}px`;
-    })
-    .on("pointerleave", () => { tooltip.hidden = true; });
+    .attr("aria-label", (d) => `${countryName(d.countryCode)}, ${d.regionCode}: ${d.views} views`);
+  hitTargets.append("title").text((d) =>
+    `${countryName(d.countryCode)} · ${d.regionCode || "Unknown region"} — ${formatter.format(d.views)} views`
+  );
 }
 
 function drawTrend() {
