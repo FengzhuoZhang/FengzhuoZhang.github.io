@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Fengzhuo Zhang's research program connecting foundation-model training, inference-time capabilities, and deployment outcomes.">
+  <meta name="description" content="Research agenda of Fengzhuo Zhang in statistical and optimization theory for foundation models.">
   <meta name="author" content="Fengzhuo Zhang">
   <meta name="theme-color" content="#17385f">
   <meta property="og:title" content="Research | Fengzhuo Zhang">
-  <meta property="og:description" content="A research program connecting foundation-model training, inference-time capabilities, and deployment outcomes.">
+  <meta property="og:description" content="Research agenda of Fengzhuo Zhang in statistical and optimization theory for foundation models.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fengzhuo-zhang.glossy-morel-5366.chatgpt.site/research.html">
   <meta property="og:image" content="https://fengzhuo-zhang.glossy-morel-5366.chatgpt.site/assets/og-card.png">
@@ -36,162 +36,38 @@
     <main id="main-content">
       <h1>Research</h1>
       <p class="lead">
-        I develop <strong>rigorous, practice-grounded theory for foundation models</strong> across
-        training, inference, and deployment. My work studies how data, optimization, and architecture
-        determine what models learn, how they use context, and how their capabilities shape system-level outcomes.
+        My research interest is <strong>statistical and optimization theory for foundation models</strong>.
+        I combine theoretical analysis with controlled experiments to study training, inference, and
+        deployment mechanisms of modern learning systems.
       </p>
-
-      <aside class="research-question" aria-labelledby="research-question-label">
-        <span id="research-question-label">Central question</span>
-        <p>Which properties of modern learning systems are essential for predicting how foundation models learn, behave, and shape system-level outcomes?</p>
-      </aside>
-
-      <nav class="research-arc" aria-label="Research framework">
-        <a href="#training"><span>01 · Training</span><strong>How is the learned function selected?</strong><small>Data × optimization × architecture</small></a>
-        <a href="#inference"><span>02 · Inference</span><strong>How do learned functions use context?</strong><small>Statistics × history × inductive bias</small></a>
-        <a href="#deployment"><span>03 · Deployment</span><strong>How do capabilities shape systems?</strong><small>Performance × cost × user behavior</small></a>
-      </nav>
-
-      <section class="research-program" aria-labelledby="past-current-heading">
-        <h2 id="past-current-heading">Past and Current Research</h2>
-        <p class="section-intro">Across the three stages, I build tractable theoretical models that retain the data distributions, architectural structures, and strategic interactions that materially affect modern learning systems.</p>
-
-        <article class="research-stage" id="training">
-          <header class="stage-header">
-            <span class="stage-number" aria-hidden="true">01</span>
-            <div>
-              <span class="stage-kicker">Training</span>
-              <h3>Data Distribution and Architecture Shape Optimization Efficacy</h3>
-              <p class="stage-question">How do training dynamics select the learned function?</p>
-            </div>
-          </header>
-          <p class="stage-summary">My work shows that an optimizer cannot be understood in isolation: its effectiveness depends on how its geometry interacts with data heterogeneity and architectural structure. I use the performance gap between Muon and Adam as a concrete test case for this broader principle.</p>
-          <div class="research-findings">
-            <section>
-              <h4>Heavy-tailed data and associative memory</h4>
-              <p>Muon’s advantage is concentrated in associative-memory components, where it learns low-frequency associations more effectively under imbalanced data.</p>
-            </section>
-            <section>
-              <h4>Curvature and optimizer geometry</h4>
-              <p>Gradient–Hessian alignment lets Muon incur a smaller second-order curvature penalty than Adam, with heavier-tailed data amplifying the advantage.</p>
-            </section>
-            <section>
-              <h4>Optimizer-dependent representations</h4>
-              <p>Under feature imbalance, different optimizers learn distinct representation subspaces with systematic differences in robustness and transferability.</p>
-            </section>
-          </div>
-          <div class="stage-works">
-            <span>Selected work</span>
-            <ul>
-              <li><a href="https://openreview.net/forum?id=twbMFL0DMp" target="_blank" rel="noopener">Muon Outperforms Adam in Tail-End Associative Memory Learning</a> <small>ICLR 2026</small></li>
-              <li><a href="https://arxiv.org/abs/2606.04662" target="_blank" rel="noopener">Why Muon Outperforms Adam: A Curvature Perspective</a> <small>Under review</small></li>
-              <li><a href="https://arxiv.org/abs/2606.09658" target="_blank" rel="noopener">Muon Learns More Robust and Transferable Features than Adam</a> <small>Under review</small></li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-stage" id="inference">
-          <header class="stage-header">
-            <span class="stage-number" aria-hidden="true">02</span>
-            <div>
-              <span class="stage-kicker">Inference</span>
-              <h3>Context Dynamics and Architecture Shape Information Utilization</h3>
-              <p class="stage-question">How do learned functions use context and history?</p>
-            </div>
-          </header>
-          <p class="stage-summary">At inference, the key unit of analysis shifts from individual tokens to dependencies across a sequence. I study how the statistical structure of context—including nonstationarity—interacts with architectural inductive bias to determine what information a model can use.</p>
-          <div class="research-findings research-findings-two">
-            <section>
-              <h4>Bayesian computation in context</h4>
-              <p>My analyses characterize In-Context Learning as Bayesian model averaging over latent tasks and extend that mechanism to multiple Chain-of-Thought reasoning trajectories.</p>
-            </section>
-            <section>
-              <h4>Long-horizon visual generation</h4>
-              <p>For autoregressive image and video models, I connect inefficiency and degradation to sparse visual signals, finite-context history forgetting, and accumulated local prediction errors.</p>
-            </section>
-          </div>
-          <div class="stage-works">
-            <span>Selected work</span>
-            <ul>
-              <li><a href="https://arxiv.org/abs/2305.19420" target="_blank" rel="noopener">What and How Does In-Context Learning Learn?</a> <small>AISTATS 2025</small></li>
-              <li><a href="https://arxiv.org/abs/2408.14511" target="_blank" rel="noopener">Unveiling the Statistical Foundations of Chain-of-Thought Prompting Methods</a> <small>JMLR 2026</small></li>
-              <li><a href="https://arxiv.org/abs/2503.10704" target="_blank" rel="noopener">Error Analyses of Auto-Regressive Video Diffusion Models</a> <small>JMLR 2026</small></li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-stage" id="deployment">
-          <header class="stage-header">
-            <span class="stage-number" aria-hidden="true">03</span>
-            <div>
-              <span class="stage-kicker">Deployment</span>
-              <h3>Model Performance and Computational Cost Shape System Outcomes</h3>
-              <p class="stage-question">How do inference performance and cost shape strategic behavior?</p>
-            </div>
-          </header>
-          <p class="stage-summary">Once models are deployed, heterogeneous users trade off the performance and cost of adaptation methods. Their choices create congestion in shared infrastructure, linking statistical performance to user welfare, platform profit, and equilibrium outcomes.</p>
-          <div class="research-findings research-findings-two">
-            <section>
-              <h4>Heterogeneous population interactions</h4>
-              <p>Graphon mean-field games model structured populations and yield equilibrium guarantees, estimation methods, and learning algorithms when the interaction graph is unknown.</p>
-            </section>
-            <section>
-              <h4>User–platform equilibria</h4>
-              <p>Quantitative models of ICL and supervised fine-tuning reveal how improvements in statistical performance or compute cost can change congestion non-monotonically.</p>
-            </section>
-          </div>
-          <div class="stage-works">
-            <span>Selected work</span>
-            <ul>
-              <li><a href="https://arxiv.org/abs/2607.14371" target="_blank" rel="noopener">Supervised Fine-Tuning vs. In-Context Learning</a> <small>EC 2026</small></li>
-              <li><a href="https://jmlr.org/papers/v25/23-1409.html" target="_blank" rel="noopener">Learning Regularized Graphon Mean-Field Games with Unknown Graphons</a> <small>JMLR 2024</small></li>
-              <li><a href="https://papers.neurips.cc/paper_files/paper/2023/hash/d4c2f25bf0c33065b7d4fb9be2a9add1-Abstract-Conference.html" target="_blank" rel="noopener">Learning Regularized Monotone Graphon Mean-Field Games</a> <small>NeurIPS 2023</small></li>
-            </ul>
-          </div>
-        </article>
+      <section class="research-theme">
+        <h2>Optimization and Training Dynamics of Foundation Models</h2>
+        <p>This line of work studies how optimizer geometry, curvature, and training dynamics shape what large language models learn. Recent projects compare Muon and Adam through associative-memory learning, feature transfer, curvature, and relative generalization behavior.</p>
+        <ul class="research-paper-list">
+          <li><span class="paper-title">Relative Generalization Invariance of LLM Optimizers.</span><span class="paper-venue">Under review.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2606.04662" target="_blank" rel="noopener">Why Muon Outperforms Adam: A Curvature Perspective.</a></span><span class="paper-venue">Under review.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2606.09658" target="_blank" rel="noopener">Muon Learns More Robust and Transferable Features than Adam.</a></span><span class="paper-venue">Under review.</span></li><li><span class="paper-title"><a href="https://openreview.net/forum?id=twbMFL0DMp" target="_blank" rel="noopener">Muon Outperforms Adam in Tail-End Associative Memory Learning.</a></span><span class="paper-venue"><em>International Conference on Learning Representations</em> (ICLR), 2026.</span></li>
+        </ul>
       </section>
-
-      <section class="future-program" aria-labelledby="future-heading">
-        <h2 id="future-heading">Future Research Directions</h2>
-        <p class="section-intro">My long-term goal is an end-to-end predictive theory of how interventions in data, optimization, and architecture alter inference-time capabilities and, ultimately, system-level outcomes.</p>
-
-        <div class="future-grid">
-          <article class="future-card">
-            <span>Thrust 1 · Training</span>
-            <h3>Toward a Unified Theory of Foundation-Model Training</h3>
-            <p class="future-question">What principles persist across optimizers and architectures?</p>
-            <p>Relative Generalization Invariance—approximately stable differences in token-level validation loss after an initial transient—offers an empirical starting point for identifying shared structure in generalization dynamics.</p>
-            <dl>
-              <div><dt>Near term</dt><dd>Test invariances across scale, pretraining, post-training, optimizers, architectures, and representation learning.</dd></div>
-              <div><dt>Long term</dt><dd>Separate shared, data-dependent dynamics from optimizer- and architecture-specific deviations to guide better designs.</dd></div>
-            </dl>
-          </article>
-
-          <article class="future-card">
-            <span>Thrust 2 · Training → Inference</span>
-            <h3>Connecting Training Dynamics to Inference-Time Capabilities</h3>
-            <p class="future-question">How can training dynamics predict the capabilities expressed at inference?</p>
-            <p>My initial work links gradient-descent training to the emergence of attention patterns that use positional embeddings to aggregate the contextual information needed for prediction.</p>
-            <dl>
-              <div><dt>Near term</dt><dd>Track how induction, decomposition, verification, and self-correction emerge under pretraining and reinforcement learning.</dd></div>
-              <div><dt>Long term</dt><dd>Map data, objectives, optimizers, and architectures to capability emergence, reliability, and inference-time scaling.</dd></div>
-            </dl>
-          </article>
-
-          <article class="future-card">
-            <span>Thrust 3 · Inference → Deployment</span>
-            <h3>Closing the Loop between Capabilities and User Behavior</h3>
-            <p class="future-question">How do inference capabilities and user behavior co-evolve?</p>
-            <p>Building on models of personalization choices and prompt-adaptive decoding, I will study the two-way feedback among model capability, user behavior, data, resource demand, and platform incentives.</p>
-            <dl>
-              <div><dt>Near term</dt><dd>Develop dynamic models of user decisions and model updates, including congestion, biased feedback, and performance disparities.</dd></div>
-              <div><dt>Long term</dt><dd>Identify which statistical and computational properties create economic value and improve human welfare.</dd></div>
-            </dl>
-          </article>
-        </div>
+      <section class="research-theme">
+        <h2>Statistical Foundations of Reasoning and In-Context Learning</h2>
+        <p>This research develops statistical and economic perspectives on how foundation models adapt at inference and deployment time. Topics include chain-of-thought prompting, Bayesian interpretations of in-context learning, autonomous decision-making, and equilibrium choices between supervised fine-tuning and in-context learning.</p>
+        <ul class="research-paper-list">
+          <li><span class="paper-title"><a href="https://arxiv.org/abs/2408.14511" target="_blank" rel="noopener">Unveiling the Statistical Foundations of Chain-of-Thought Prompting Methods.</a></span><span class="paper-venue"><em>Journal of Machine Learning Research</em> (JMLR), 2026, to appear.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2305.19420" target="_blank" rel="noopener">What and How Does In-Context Learning Learn? Bayesian Model Averaging, Parameterization, and Generalization.</a></span><span class="paper-venue"><em>International Conference on Artificial Intelligence and Statistics</em> (AISTATS), 2025.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2607.14371" target="_blank" rel="noopener">Supervised Fine-Tuning vs. In-Context Learning: An Equilibrium Analysis of LLM Personalization under Congestion.</a></span><span class="paper-venue"><em>ACM Conference on Economics and Computation</em> (EC), 2026.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2405.19883" target="_blank" rel="noopener">From Words to Actions: Unveiling the Theoretical Underpinnings of LLM-Driven Autonomous Systems.</a></span><span class="paper-venue"><em>International Conference on Machine Learning</em> (ICML), 2024.</span></li>
+        </ul>
       </section>
-
-      <p class="research-closing">Together, these directions connect what a model learns, what it can do with context, and how those capabilities reshape the systems in which it is deployed.</p>
+      <section class="research-theme">
+        <h2>Long-Context Models and Efficient Autoregressive Inference</h2>
+        <p>These projects examine long-context adaptation, attention phenomena, speculative decoding, and autoregressive visual generation. The shared goal is to understand and improve the efficiency, robustness, and consistency of long-horizon generation.</p>
+        <ul class="research-paper-list">
+          <li><span class="paper-title"><a href="https://arxiv.org/abs/2410.13846" target="_blank" rel="noopener">LightTransfer: Your Long-Context LLM is Secretly a Hybrid Model with Effortless Adaptation.</a></span><span class="paper-venue"><em>Transactions on Machine Learning Research</em> (TMLR), 2025.</span></li><li><span class="paper-title"><a href="https://aclanthology.org/2026.acl-long.83/" target="_blank" rel="noopener">LongSpec: Long-Context Lossless Speculative Decoding with Efficient Drafting and Verification.</a></span><span class="paper-venue"><em>Annual Meeting of the Association for Computational Linguistics</em> (ACL), 2026.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2505.15141" target="_blank" rel="noopener">BanditSpec: Adaptive Speculative Decoding via Bandit Algorithms.</a></span><span class="paper-venue"><em>International Conference on Machine Learning</em> (ICML), 2025.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2601.09212" target="_blank" rel="noopener">Annealed Relaxation of Speculative Decoding for Faster Autoregressive Image Generation.</a></span><span class="paper-venue"><em>AAAI Conference on Artificial Intelligence</em> (AAAI), 2026.</span></li><li><span class="paper-title"><a href="https://openreview.net/forum?id=GfJQaZbkNh" target="_blank" rel="noopener">When Attention Sink Emerges in Language Models: An Empirical View.</a></span><span class="paper-venue"><em>International Conference on Learning Representations</em> (ICLR), 2025.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2601.08297" target="_blank" rel="noopener">Demystifying the Slash Pattern in Attention: The Role of RoPE.</a></span><span class="paper-venue">Under review.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2503.10704" target="_blank" rel="noopener">Error Analyses of Auto-Regressive Video Diffusion Models: A Unified Framework.</a></span><span class="paper-venue"><em>Journal of Machine Learning Research</em> (JMLR) 27(135):1–51, 2026.</span></li>
+        </ul>
+      </section>
+      <section class="research-theme">
+        <h2>Learning Theory, Reinforcement Learning, and Multi-Agent Systems</h2>
+        <p>My broader theoretical work includes graphon mean-field games, actor–critic methods with neural function approximation, relational reasoning in multi-agent reinforcement learning, and structure learning for graphical models.</p>
+        <ul class="research-paper-list">
+          <li><span class="paper-title"><a href="https://jmlr.org/papers/v25/23-1409.html" target="_blank" rel="noopener">Learning Regularized Graphon Mean-Field Games with Unknown Graphons.</a></span><span class="paper-venue"><em>Journal of Machine Learning Research</em> (JMLR), 25(372):1–95, 2024.</span></li><li><span class="paper-title"><a href="https://papers.neurips.cc/paper_files/paper/2023/hash/d4c2f25bf0c33065b7d4fb9be2a9add1-Abstract-Conference.html" target="_blank" rel="noopener">Learning Regularized Monotone Graphon Mean-Field Games.</a></span><span class="paper-venue"><em>Conference on Neural Information Processing Systems</em> (NeurIPS), 2023.</span></li><li><span class="paper-title"><a href="https://openreview.net/forum?id=V05qqNqBpY" target="_blank" rel="noopener">Finite-Time Analysis of Actor-Critic Methods with Deep Neural Network Approximation.</a></span><span class="paper-venue"><em>International Conference on Learning Representations</em> (ICLR), 2025.</span></li><li><span class="paper-title"><a href="https://papers.nips.cc/paper_files/paper/2022/hash/e8da56eb93676e8f60ed2b696e44e7dc-Abstract-Conference.html" target="_blank" rel="noopener">Relational Reasoning via Set Transformers: Provable Efficiency and Applications to MARL.</a></span><span class="paper-venue"><em>Conference on Neural Information Processing Systems</em> (NeurIPS), 2022.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2110.14341" target="_blank" rel="noopener">Active-LATHE: An Active Learning Algorithm for Boosting the Error Exponent for Learning Homogeneous Ising Trees.</a></span><span class="paper-venue"><em>IEEE Transactions on Information Theory</em>, 69(4):2537–2555, 2023.</span></li><li><span class="paper-title"><a href="https://arxiv.org/abs/2106.00885" target="_blank" rel="noopener">Robustifying Algorithms of Learning Latent Trees with Vector Variables.</a></span><span class="paper-venue"><em>Conference on Neural Information Processing Systems</em> (NeurIPS), 2021.</span></li>
+        </ul>
+      </section>
     </main>
 
     <footer class="site-footer">
