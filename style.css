@@ -312,6 +312,18 @@ sup {
   max-width: 835px;
 }
 
+.advisor-link {
+  color: var(--author-marker);
+  font-weight: 700;
+  text-decoration-color: rgba(157, 61, 32, 0.38);
+  text-decoration-thickness: 1.5px;
+}
+
+.advisor-link:hover {
+  color: var(--navy);
+  text-decoration-color: currentColor;
+}
+
 .news-list,
 .simple-list,
 .research-paper-list {
