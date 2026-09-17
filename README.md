@@ -39,13 +39,11 @@ Example:
 <a href="YOUR_GITHUB_URL">GitHub</a>
 ```
 
-## Publish with GitHub Pages
+## GitHub Pages
 
-1. Create a repository named `<username>.github.io`.
-2. Copy the contents of this folder into the repository root.
-3. Commit and push to the `main` branch.
-4. In GitHub, open **Settings → Pages**.
-5. Select **Deploy from a branch**, `main`, and `/(root)`.
+The public site is deployed from the `main` branch of the
+`FengzhuoZhang/FengzhuoZhang.github.io` repository and is available at
+<https://fengzhuozhang.github.io/>.
 
 ## Content choices
 
