@@ -6,7 +6,7 @@ This is a dependency-free static academic website for Fengzhuo Zhang. It uses a 
 
 - `index.html` — biography, selected publications, news, and education
 - `research.html` — research themes and representative papers
-- `publications.html` — complete publication list from the CV
+- `publications.html` — full publication list from the CV
 - `teaching.html` — teaching experience and external talks
 - `service.html` — academic service and honors
 - `style.css` — responsive site styling
