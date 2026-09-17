@@ -309,7 +309,9 @@ sup {
 }
 
 #about p {
-  max-width: 835px;
+  max-width: none;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .advisor-link {
