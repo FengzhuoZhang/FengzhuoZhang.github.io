@@ -45,8 +45,15 @@ The public site is deployed from the `main` branch of the
 `FengzhuoZhang/FengzhuoZhang.github.io` repository and is available at
 <https://fengzhuozhang.github.io/>.
 
-Aggregate, cookie-free visitation statistics are collected with Cloudflare Web
-Analytics. The reporting dashboard is private to the Cloudflare account owner.
+Cookie-free visitation statistics are collected by a dedicated Cloudflare Worker
+and stored in D1. The password-protected reporting dashboard is available at
+<https://fengzhuo-site-analytics.fengzhuozhang.workers.dev/analytics>.
+
+The public pages load `visit-analytics.js`, which respects Global Privacy Control
+and Do Not Track. The Worker stores a page path, date, coarse location, and a
+daily secret-keyed visitor hash; it never stores raw IP addresses and deletes
+detailed records after 180 days. Worker source and schema are in `cloudflare/`.
+The three Worker secrets are configured in Cloudflare and are not committed.
 
 ## Content choices
 

@@ -1,0 +1,16 @@
+{
+  "name": "fengzhuo-site-analytics",
+  "main": "analytics-worker.js",
+  "compatibility_date": "2026-09-17",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fengzhuo-site-analytics",
+      "database_id": "6789fc1a-3b96-4e35-9121-0fa18fa9a692"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

@@ -1,4 +1,4 @@
-import world from "./assets/vendor/world-110m.mjs";
+import world from "/assets/vendor/world-110m.mjs";
 
 const d3 = globalThis.d3;
 const topojson = globalThis.topojson;
@@ -141,6 +141,10 @@ async function loadAnalytics() {
   statusEl.textContent = "Loading visit statistics…";
   try {
     const response = await fetch(`/api/analytics?days=${periodSelect.value}`, { credentials: "same-origin" });
+    if (response.status === 401) {
+      window.location.assign("/login");
+      return;
+    }
     if (!response.ok) throw new Error("Unable to load analytics");
     const data = await response.json();
     render(data);
