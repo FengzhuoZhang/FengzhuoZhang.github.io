@@ -248,8 +248,12 @@ function clearedSessionCookie() {
   return SESSION_COOKIE + "=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0";
 }
 
-function sameOrigin(request) {
-  return request.headers.get("Origin") === new URL(request.url).origin;
+function isAllowedFormRequest(request) {
+  const origin = request.headers.get("Origin");
+  if (origin && origin !== "null") return origin === new URL(request.url).origin;
+
+  const fetchSite = request.headers.get("Sec-Fetch-Site");
+  return !fetchSite || fetchSite === "same-origin" || fetchSite === "none";
 }
 
 async function verifyPassword(password, env) {
@@ -438,7 +442,7 @@ async function handleRequest(request, env, context) {
       return loginPage();
     }
     if (request.method !== "POST") return new Response("Method Not Allowed", { status: 405, headers: { ...SECURITY_HEADERS, Allow: "GET, HEAD, POST" } });
-    if (!sameOrigin(request)) return new Response("Forbidden", { status: 403, headers: SECURITY_HEADERS });
+    if (!isAllowedFormRequest(request)) return new Response("Forbidden", { status: 403, headers: SECURITY_HEADERS });
     const contentLength = Number(request.headers.get("Content-Length") || 0);
     if (contentLength > 2048) return new Response("Payload Too Large", { status: 413, headers: SECURITY_HEADERS });
     const form = await request.formData();
@@ -449,7 +453,7 @@ async function handleRequest(request, env, context) {
 
   if (pathname === "/logout") {
     if (request.method !== "POST") return new Response("Method Not Allowed", { status: 405, headers: { ...SECURITY_HEADERS, Allow: "POST" } });
-    if (!sameOrigin(request)) return new Response("Forbidden", { status: 403, headers: SECURITY_HEADERS });
+    if (!isAllowedFormRequest(request)) return new Response("Forbidden", { status: 403, headers: SECURITY_HEADERS });
     return redirect("/login", 303, clearedSessionCookie());
   }
 
