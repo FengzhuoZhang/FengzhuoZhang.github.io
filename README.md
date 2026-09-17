@@ -45,6 +45,9 @@ The public site is deployed from the `main` branch of the
 `FengzhuoZhang/FengzhuoZhang.github.io` repository and is available at
 <https://fengzhuozhang.github.io/>.
 
+Aggregate, cookie-free visitation statistics are collected with Cloudflare Web
+Analytics. The reporting dashboard is private to the Cloudflare account owner.
+
 ## Content choices
 
 - The phone number was intentionally removed from both the public HTML pages and the website-safe CV copy. The original uploaded CV was not modified.
