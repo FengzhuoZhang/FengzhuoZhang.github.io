@@ -501,9 +501,12 @@ sup {
   text-transform: none;
 }
 
+.research-main > .lead,
 .research-theme p {
-  max-width: 830px;
+  max-width: none;
   color: var(--ink-soft);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .research-paper-list {
