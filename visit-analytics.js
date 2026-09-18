@@ -2,7 +2,10 @@
   const doNotTrack = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
   if (navigator.globalPrivacyControl === true || doNotTrack === "1" || doNotTrack === "yes") return;
 
-  const endpoint = "https://fengzhuo-site-analytics.fengzhuozhang.workers.dev/collect";
+  const isChatGPTSite = window.location.hostname.endsWith(".chatgpt.site");
+  const endpoint = isChatGPTSite
+    ? "/api/analytics/collect"
+    : "https://fengzhuo-site-analytics.fengzhuozhang.workers.dev/collect";
   const body = JSON.stringify({ page: window.location.pathname || "/" });
   let sent = false;
 
@@ -13,9 +16,9 @@
     fetch(endpoint, {
       method: "POST",
       body,
-      credentials: "omit",
+      credentials: isChatGPTSite ? "same-origin" : "omit",
       keepalive: true,
-      mode: "cors"
+      mode: isChatGPTSite ? "same-origin" : "cors"
     }).catch(() => undefined);
   }
 

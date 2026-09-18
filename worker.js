@@ -74,10 +74,16 @@ async function digestVisitor(ipAddress, day, secret) {
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-function shouldTrack(request, pathname) {
-  if (request.method !== "GET" || pathname === "/analytics" || pathname === "/analytics.html") return false;
+function shouldTrack(request) {
   if (request.headers.get("Sec-GPC") === "1" || request.headers.get("DNT") === "1") return false;
   return !BOT_PATTERN.test(request.headers.get("User-Agent") || "");
+}
+
+function normalizePage(value) {
+  if (typeof value !== "string" || value.length > 120) return null;
+  if (!/^\/[A-Za-z0-9._~!$&'()*+,;=:@%/-]*$/.test(value) || value.startsWith("//")) return null;
+  if (value === "/analytics" || value === "/analytics.html") return null;
+  return value === "/index.html" ? "/" : value || "/";
 }
 
 async function recordVisit(request, env, pathname) {
@@ -104,6 +110,47 @@ async function recordVisit(request, env, pathname) {
       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)`)
       .bind(day, countryCode, regionCode, latitudeBucket, longitudeBucket, page, visitorHash)
   ]);
+}
+
+async function collectVisit(request, env, context) {
+  const headers = {
+    "Cache-Control": "no-store",
+    "Referrer-Policy": "no-referrer",
+    "X-Content-Type-Options": "nosniff"
+  };
+  const requestUrl = new URL(request.url);
+  const origin = request.headers.get("Origin");
+  const fetchSite = request.headers.get("Sec-Fetch-Site");
+
+  if (origin !== requestUrl.origin || (fetchSite && fetchSite !== "same-origin")) {
+    return new Response(null, { status: 403, headers });
+  }
+  if (!shouldTrack(request)) return new Response(null, { status: 204, headers });
+  if (!env.DB || !env.ANALYTICS_HASH_SECRET) {
+    return new Response(null, { status: 503, headers });
+  }
+
+  const contentLength = Number(request.headers.get("Content-Length") || 0);
+  if (contentLength > 1024) return new Response(null, { status: 413, headers });
+
+  let payload;
+  try {
+    const text = await request.text();
+    if (text.length > 1024) return new Response(null, { status: 413, headers });
+    payload = JSON.parse(text);
+  } catch {
+    return new Response(null, { status: 400, headers });
+  }
+
+  const page = normalizePage(payload?.page);
+  if (!page) return new Response(null, { status: 400, headers });
+
+  const task = recordVisit(request, env, page).catch((error) => {
+    console.error(JSON.stringify({ event: "analytics_write_failed", message: String(error?.message || error) }));
+  });
+  if (context?.waitUntil) context.waitUntil(task);
+  else await task;
+  return new Response(null, { status: 204, headers });
 }
 
 async function authorizeAnalytics(request, env) {
@@ -203,11 +250,18 @@ async function serveAnalyticsData(request, env) {
 
 export default {
   async fetch(request, env, context) {
+    const url = new URL(request.url);
+    if (url.pathname === "/api/analytics/collect") {
+      if (request.method !== "POST") {
+        return new Response("Method Not Allowed", { status: 405, headers: { Allow: "POST" } });
+      }
+      return collectVisit(request, env, context);
+    }
+
     if (request.method !== "GET" && request.method !== "HEAD") {
       return new Response("Method Not Allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
     }
 
-    const url = new URL(request.url);
     if (url.pathname === "/analytics" || url.pathname === "/analytics.html") {
       return serveAnalyticsPage(request, env);
     }
@@ -228,10 +282,6 @@ export default {
     }
 
     const isHtml = response.headers.get("content-type")?.includes("text/html");
-    if (isHtml && shouldTrack(request, pathname)) {
-      const task = recordVisit(request, env, pathname).catch(() => undefined);
-      if (context?.waitUntil) context.waitUntil(task);
-    }
     return withHeaders(response, isHtml ? HTML_HEADERS : ASSET_HEADERS);
   }
 };

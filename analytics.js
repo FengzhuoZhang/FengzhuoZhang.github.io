@@ -1,5 +1,15 @@
 import world from "/assets/vendor/world-110m.mjs";
 
+const GITHUB_ANALYTICS_URL = "https://fengzhuo-site-analytics.fengzhuozhang.workers.dev/analytics";
+const isGitHubPages = window.location.hostname === "fengzhuozhang.github.io";
+
+if (isGitHubPages) {
+  window.location.replace(GITHUB_ANALYTICS_URL);
+} else {
+  initializeDashboard();
+}
+
+function initializeDashboard() {
 const d3 = globalThis.d3;
 const topojson = globalThis.topojson;
 const formatter = new Intl.NumberFormat("en-US");
@@ -142,7 +152,7 @@ async function loadAnalytics() {
   try {
     const response = await fetch(`/api/analytics?days=${periodSelect.value}`, { credentials: "same-origin" });
     if (response.status === 401) {
-      window.location.assign("/login");
+      window.location.assign("/signin-with-chatgpt?return_to=%2Fanalytics");
       return;
     }
     if (!response.ok) throw new Error("Unable to load analytics");
@@ -163,3 +173,4 @@ new ResizeObserver(() => {
 }).observe(document.getElementById("analytics-main"));
 
 loadAnalytics();
+}
