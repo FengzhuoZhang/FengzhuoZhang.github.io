@@ -256,6 +256,38 @@ sup {
   color: var(--ink-soft);
 }
 
+.profile-link-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.profile-link-icons a {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  place-items: center;
+  color: var(--blue);
+  font-family: var(--sans);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.profile-link-icons svg {
+  width: 22px;
+  height: 22px;
+}
+
+.profile-link-icons a:hover {
+  color: var(--navy);
+  background: var(--blue-soft);
+}
+
 .hero-summary {
   max-width: 600px;
   margin: 22px 0 0;
