@@ -4,14 +4,16 @@ This is a dependency-free static academic website for Fengzhuo Zhang. It uses a 
 
 ## Included files
 
-- `index.html` — biography, selected publications, news, and education
+- `index.html` — biography, illustrated research highlights, news, and education
 - `research.html` — research themes and representative papers
 - `publications.html` — full publication list from the CV
 - `teaching.html` — teaching experience and external talks
 - `service.html` — academic service and honors
 - `style.css` — responsive site styling
+- `research-highlights.js` — figure reveal controls on the homepage and research page
 - `photo.pic.jpg` — profile portrait
 - `assets/og-card.png` — social sharing preview image
+- `assets/research/` — web figures adapted from the research statement diagrams
 - `.nojekyll` — direct GitHub Pages serving
 
 ## Preview locally
